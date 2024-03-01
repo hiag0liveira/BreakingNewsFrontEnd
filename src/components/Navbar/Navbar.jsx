@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "../Button/Button";
 import { searchSchema } from "../../schemas/searchSchema";
 import { userLogged } from "../../services/userServices";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Cookies from "js-cookie";
 import { UserContext } from "../../Context/UserContext";
 
@@ -44,12 +44,12 @@ export function Navbar() {
 
   function signout() {
     Cookies.remove("token");
-    setUser(undefined);
+    setUser(null);
     navigate("/");
   }
 
-  useEffect(() => {
-    if (Cookies.get("token")) findUserLogged();
+  useEffect(() => { 
+    (Cookies.get("token")) ? findUserLogged() :  signout();  
   }, []);
 
   return (
@@ -75,7 +75,7 @@ export function Navbar() {
 
         {user ? (
           <UserLoggedSpace>
-            <Link to="/profile">
+            <Link to="/profile" style={{textDecoration: 'none'}}>
               <h2>{user.name}</h2>
             </Link>
 
