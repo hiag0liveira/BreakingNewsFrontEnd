@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3001";
+const baseURL = "https://api-breakingnews-dvti.onrender.com/";
+/* const baseURL = "http://localhost:3001"; */
 
 export function getAllPosts() {
   const response = axios.get(`${baseURL}/posts`); 
@@ -16,3 +17,4 @@ export function searchPosts(title) {
   const response = axios.get(`${baseURL}/posts/search?title=${title}`);
   return response;
 }
+https://api-breakingnews-dvti.onrender.com/

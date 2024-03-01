@@ -1,7 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const baseURL = "http://localhost:3001";
+const baseURL = "https://api-breakingnews-dvti.onrender.com/";
+/* const baseURL = "http://localhost:3001"; */
 
 export function signup(data) {
   delete data.confirmPassword;
