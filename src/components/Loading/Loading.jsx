@@ -1,4 +1,4 @@
-import loading from "../../images/loading.svg";
+import loading from "../../../public/loading.svg";
 import { LoaderContainer, LoaderImg } from "./LoadingStyles";
 
 export function Loading() {
