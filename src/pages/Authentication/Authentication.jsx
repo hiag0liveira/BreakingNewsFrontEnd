@@ -100,7 +100,7 @@ export function Authentication() {
             register={registerSignup}
           />
           {errorsSignup.password && (
-            <ErrorSpan>{errorsSignin.password.message}</ErrorSpan>
+            <ErrorSpan>{errorsSignup.password.message}</ErrorSpan>
           )}
           <Input
             type="password"
