@@ -1,10 +1,23 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
-import { ProfileActions, ProfileAvatar, ProfileBackground, ProfileContainer, ProfileHeader, ProfileIconAdd, ProfileIconEdit, ProfileUser } from "./ProfileStyled";
+import { ProfileActions, ProfileAvatar, ProfileBackground, ProfileContainer, ProfileHeader, ProfileIconAdd, ProfileIconEdit, ProfilePosts, ProfileUser } from "./ProfileStyled";
+import { getAllPostsByUser } from "../../services/postsServices";
+import { Card } from "../../components/Card/Card";
 
 
 export function Profile() {
   const { user } = useContext(UserContext);
+  const [posts, setPosts] = useState([]);
+
+  async function findAllPostsByUser() {
+    const postResponse = await getAllPostsByUser();
+    setPosts(postResponse.data.postsByUser);
+  }
+
+  useEffect(() => {
+    findAllPostsByUser();
+  }, []);
+
   return (
     <ProfileContainer>
       <ProfileHeader>
@@ -27,6 +40,25 @@ export function Profile() {
         </ProfileActions>
 
       </ProfileHeader>
+
+      <ProfilePosts>
+        {posts.length === 0 && (
+          <h3>Você ainda não criou nenhuma noticia...</h3>
+        )}
+        {posts.map((item) => {
+          return (
+            <Card
+              key={item.id}
+              title={item.title}
+              text={item.text}
+              banner={item.banner}
+              likes={item.likes}
+              comments={item.comments}
+            />
+          );
+        })}
+      </ProfilePosts>
+      
     </ProfileContainer>
   );
 }
