@@ -28,6 +28,10 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <Profile />,
       },
+      {
+        path: "/manege-news/:action",
+        element: <ManageNews />,
+      },
     ],
   },
   {
@@ -35,7 +39,6 @@ const router = createBrowserRouter([
     element: <Authentication />,
   },
 ]);
-
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -1,9 +1,19 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
-import { ProfileActions, ProfileAvatar, ProfileBackground, ProfileContainer, ProfileHeader, ProfileIconAdd, ProfileIconEdit, ProfilePosts, ProfileUser } from "./ProfileStyled";
+import {
+  ProfileActions,
+  ProfileAvatar,
+  ProfileBackground,
+  ProfileContainer,
+  ProfileHeader,
+  ProfileIconAdd,
+  ProfileIconEdit,
+  ProfilePosts,
+  ProfileUser,
+} from "./ProfileStyled";
 import { getAllPostsByUser } from "../../services/postsServices";
 import { Card } from "../../components/Card/Card";
-
+import { Link } from "react-router-dom";
 
 export function Profile() {
   const { user } = useContext(UserContext);
@@ -25,26 +35,25 @@ export function Profile() {
           <i className="bi bi-pencil-square"></i>
         </ProfileIconEdit>
 
-        <ProfileBackground src={user.background} alt= ""/>
+        <ProfileBackground src={user.background} alt="" />
 
         <ProfileUser>
-          <ProfileAvatar src={user.avatar} alt="Foto do usuário"/>
+          <ProfileAvatar src={user.avatar} alt="Foto do usuário" />
           <h2>{user.name}</h2>
           <h3>@{user.username}</h3>
         </ProfileUser>
 
         <ProfileActions>
-          <ProfileIconAdd>
-            <i className="bi bi-plus-circle"></i>
-          </ProfileIconAdd>
+          <Link to="/manege-news/add">
+            <ProfileIconAdd>
+              <i className="bi bi-plus-circle"></i>
+            </ProfileIconAdd>
+          </Link>
         </ProfileActions>
-
       </ProfileHeader>
 
       <ProfilePosts>
-        {posts.length === 0 && (
-          <h3>Você ainda não criou nenhuma noticia...</h3>
-        )}
+        {posts.length === 0 && <h3>Você ainda não criou nenhuma noticia...</h3>}
         {posts.map((item) => {
           return (
             <Card
@@ -58,7 +67,6 @@ export function Profile() {
           );
         })}
       </ProfilePosts>
-      
     </ProfileContainer>
   );
 }
