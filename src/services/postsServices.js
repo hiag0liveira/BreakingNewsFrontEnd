@@ -5,12 +5,12 @@ const baseURL = "https://api-breakingnews-dvti.onrender.com";
 /* const baseURL = "http://localhost:3001"; */
 
 export function getAllPosts() {
-  const response = axios.get(`${baseURL}/posts`); 
+  const response = axios.get(`${baseURL}/posts`);
   return response;
 }
 
 export function getTopPost() {
-  const response = axios.get(`${baseURL}/posts/top`); 
+  const response = axios.get(`${baseURL}/posts/top`);
   return response;
 }
 
@@ -20,10 +20,46 @@ export function searchPosts(title) {
 }
 
 export function getAllPostsByUser() {
-  const response = axios.get(`${baseURL}/posts/byUserID` , {
+  const response = axios.get(`${baseURL}/posts/byUserID`, {
     headers: {
       Authorization: `Bearer ${Cookies.get("token")}`,
     }
+  });
+  return response;
+}
+
+export function createNews(body) {
+  const response = axios.post(`${baseURL}/posts/create`, body, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+}
+
+export function getNewsById(id) {
+  const response = axios.get(`${baseURL}/posts/byIdPost/${id}`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+}
+
+export function editNews(body, id) {
+  const response = axios.patch(`${baseURL}/posts/update/${id}`, body, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
+  });
+  return response;
+}
+
+export function deleteNews(id) {
+  const response = axios.delete(`${baseURL}/posts/delete/${id}`, {
+    headers: {
+      Authorization: `Bearer ${Cookies.get("token")}`,
+    },
   });
   return response;
 }

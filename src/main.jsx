@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import { Authentication } from "./pages/Authentication/Authentication";
 import { Profile } from "./pages/Profile/Profile";
 import UserProvider from "./Context/UserContext";
+import { ManageNews } from "./pages/ManageNews/ManageNews";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "/manege-news/:action",
+        path: "/manage-news/:action/:id",
         element: <ManageNews />,
       },
     ],
